@@ -15,6 +15,15 @@ function App() {
     // <div className={styles.appBody} >toruista app</div>
     <>
 
+
+    
+
+
+
+      
+
+
+
       <Searchbox hotelsData={hotelsData} setHotelsData={setHotelsData} />
       <br></br>
       <br></br>
