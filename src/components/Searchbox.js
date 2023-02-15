@@ -11,23 +11,36 @@ export const Searchbox = () => {
 
     const [selectedPool, setSelectedPool] = useState('');
 
-    const [hotelsData,setHotelsData] = useState([]);
+    const [hotelsData, setHotelsData] = useState([]);
 
     useEffect(() => {
 
     }, [])
 
 
-    function searchResults() {
-            const url = "http://localhost:8080/hotel/all";
-           fetchData(url,setHotelsData) 
+    function searchResults(e) {
+        e.preventDefault()
+
+        let url = "http://localhost:8080/hotel/search?";
+
+        const urlParams = new URLSearchParams()
+        urlParams.append("location", selectedCity);
+        urlParams.append("experience", selectedExperience);
+        urlParams.append("pool", selectedPool);
+
+        url += urlParams.toString()
+        console.log(url)
+
+
+        fetchData(url, setHotelsData)
     }
 
-    async function fetchData(url,setData){
-           const response = await fetch(url);
-           const data = await response.json();
-            setData(data);
-            console.log(data);
+
+    async function fetchData(url, setData) {
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
+        console.log(data);
     }
 
 
@@ -47,7 +60,7 @@ export const Searchbox = () => {
     };
 
 
-    
+
 
 
 
@@ -56,24 +69,25 @@ export const Searchbox = () => {
 
     return (
 
-        <div className={styles.searchbox}>
-
+        <form className={styles.searchbox} onSubmit={searchResults}>
 
             <div>
                 <label htmlFor="city">City:</label>
-                <select id="city" value={selectedCity} onChange={handleCity}>
+                <select required={true} id="city" value={selectedCity} onChange={handleCity}>
+                    <option value='' disabled >Select city</option>
                     <option value="karachi">Karachi</option>
                     <option value="lahore">lahore</option>
-                    <option value="islamabad">islamabad</option>
+                    <option value="islamabad">Islamabad</option>
                 </select>
             </div>
 
             <div>
                 <label htmlFor="experience">Experience:</label>
-                <select id="experience" value={selectedExperience} onChange={handleExperience}>
-                    <option value="Luxury">Luxury</option>
-                    <option value="Budget">Budget</option>
-                    <option value="Business">Business</option>
+                <select required={true} id="experience" value={selectedExperience} onChange={handleExperience}>
+                    <option value='' disabled >Select Experience</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="budget">Budget</option>
+                    <option value="business">Business</option>
                 </select>
             </div>
 
@@ -81,21 +95,17 @@ export const Searchbox = () => {
 
             <div>
                 <label htmlFor="experience">Pool:</label>
-                <select id="experience" value={selectedPool} onChange={handlePool}>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                <select required={true} id="experience" value={selectedPool} onChange={handlePool}>
+                    <option value='' disabled >Select Experience</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
                 </select>
             </div>
 
-            <button onClick={searchResults} >search</button>
+            <button type='submit' >search</button>
 
 
-
-
-
-
-
-        </div>
+        </form>
 
 
     );
