@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import styles from './Searchbox.module.css';
-export const Searchbox = () => {
+export const Searchbox = ({hotelsData,setHotelsData}) => {
 
 
     const [selectedCity, setSelectedCity] = useState('');
@@ -11,14 +11,9 @@ export const Searchbox = () => {
 
     const [selectedPool, setSelectedPool] = useState('');
 
-    const [hotelsData, setHotelsData] = useState([]);
-
-    useEffect(() => {
-
-    }, [])
 
 
-    function searchResults(e) {
+    async function searchResults(e) {
         e.preventDefault()
 
         let url = "http://localhost:8080/hotel/search?";
@@ -31,16 +26,16 @@ export const Searchbox = () => {
         url += urlParams.toString()
         console.log(url)
 
-
-        fetchData(url, setHotelsData)
+        const res = await fetchData(url)
+        console.log(res)
+        setHotelsData(res)
     }
 
 
-    async function fetchData(url, setData) {
+    async function fetchData(url) {
         const response = await fetch(url);
         const data = await response.json();
-        setData(data);
-        console.log(data);
+        return data
     }
 
 
