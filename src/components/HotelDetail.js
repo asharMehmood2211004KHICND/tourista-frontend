@@ -13,7 +13,7 @@ export const HotelDetail = ({}) => {
   }
 
   const handleBookNowButtonClick=()=>{
-    navigate("/booking");
+    navigate("/booking",{ state: hotel });
   }
   
   

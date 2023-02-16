@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Searchbox } from './components/Searchbox';
 import { HotelsList } from './components/HotelsList';
 import { HotelDetail } from './components/HotelDetail';
-import { BookingForm } from './components/BookingForm';
+import { BookingPage } from './pages/BookingPage';
 
 function App() {
 
@@ -29,6 +29,8 @@ function App() {
     
       <Router>
         <Searchbox hotelsData={hotelsData} setHotelsData={setHotelsData} />
+
+        
       <Routes>
 
         <Route element={
@@ -40,7 +42,7 @@ function App() {
           {/* <Route element={} path="/detail/:hotelId" /> */}
           <Route element={<HotelDetail/>} path="/hotel/:id"  />
 
-          <Route element={<BookingForm/>} path="/booking"/>
+          <Route element={<BookingPage/>} path="/booking"/>
 
       </Routes>
 

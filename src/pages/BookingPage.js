@@ -1,0 +1,87 @@
+import React from 'react'
+import { TextField } from '../components/TextField';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+
+
+
+
+export const BookingPage = () => {
+
+    const [nameValue, setNameValue] = useState("");
+    const [addressValue,setAddressValue] = useState("");
+    const [emailValue,setEmailValue] = useState("");
+    const [expenseWithoutTax,setAmountWithoutTax] = useState(0);
+    const [expenseWithTax, setexpenseWithTax] = useState(1)
+
+    const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
+    const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
+
+    const[expense,setExpense] = useState(0);
+
+
+    const location = useLocation();
+    const hotelData = location.state;
+    
+    const timeDifference = selectedCheckOutDate.getTime() - selectedCheckInDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    async function calculateExpense(e) {
+
+        let url = "http://localhost:8080/bill/calculate?";
+
+        const urlParams = new URLSearchParams()
+        urlParams.append("price", hotelData.price);
+        // urlParams.append("checkInDate", selectedCheckInDate.getFullYear()+'-'+selectedCheckInDate.getMonth()+'-'+selectedCheckInDate.getDate());
+        // urlParams.append("checkOutDate", selectedCheckOutDate.getDate());
+        urlParams.append("days",daysDifference);
+
+        url += urlParams.toString()
+        console.log(url)
+
+        const res = await fetchData(url)
+        console.log(res)
+        //setHotelsData(res)
+        setExpense(res);
+        //navigate('/');
+    }
+
+
+    async function fetchData(url) {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data
+    }
+
+    function printdate(){
+        console.log(daysDifference)
+    }
+
+
+
+
+
+
+
+
+  return (
+    <div>
+       name <TextField  value={nameValue} setValue={setNameValue} ></TextField><br></br>
+       address <TextField value={addressValue} setValue={setAddressValue} ></TextField><br></br>
+      email <TextField value={emailValue} setValue={setEmailValue} ></TextField><br></br>
+      arrival date <DatePicker  selected={selectedCheckInDate} onChange={(date) => setSelectedCheckInDate(date)}  dateFormat="yyyy/MM/dd" /><br></br>
+      departure date <DatePicker selected={selectedCheckOutDate} onChange={(date) => setSelectedCheckOutDate(date)} dateFormat="yyyy/MM/dd"/><br></br>
+       price <h1>{hotelData.price}</h1><br></br>
+        {/* <button onClick={calculateExpense}>view expense</button><br></br> */}
+        <button onClick={calculateExpense}>view expense</button><br></br>
+
+        with tax <h3>{expenseWithTax}</h3>        
+        without tax <h3>{expenseWithoutTax}</h3>        
+    </div>
+    
+  );
+}

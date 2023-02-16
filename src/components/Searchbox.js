@@ -12,7 +12,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
 
     const [selectedPool, setSelectedPool] = useState('');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     async function searchResults(e) {
         e.preventDefault()
