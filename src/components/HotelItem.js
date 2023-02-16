@@ -1,16 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export const HotelItem = ({name,experience,location}) => {
-  return (
-    <div>HotelItem
+import { useNavigate } from 'react-router-dom'
+import styles from "./HotelsList.module.css"
+export const HotelItem = ({ name, experience, location,id }) => {
 
+        const navigate = useNavigate();
+        
+        const handleClick = () => {
+              navigate(`/detail/${id}`)  
+        }
 
-        <h2> name : {name}</h2>
-          <p>experience: {experience}</p>
-          <p> location : {location} </p>
-         
+    return (
+        <div className={styles.hotelItem}>
 
+        <Link to={`/hotel/${id}`}>{name}</Link>
 
-    </div>
-  )
+            <h2> name : {name}</h2>
+            <p>experience: {experience}</p>
+            <p> location : {location} </p>
+
+        </div>
+    )
 }

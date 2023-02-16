@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Searchbox.module.css';
 export const Searchbox = ({hotelsData,setHotelsData}) => {
 
@@ -11,7 +12,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
 
     const [selectedPool, setSelectedPool] = useState('');
 
-
+    const navigate = useNavigate()
 
     async function searchResults(e) {
         e.preventDefault()
@@ -29,6 +30,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
         const res = await fetchData(url)
         console.log(res)
         setHotelsData(res)
+        navigate('/');
     }
 
 
