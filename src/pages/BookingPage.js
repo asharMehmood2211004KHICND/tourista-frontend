@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextField } from '../components/TextField';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,16 +12,19 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export const BookingPage = () => {
 
+    const navigate = useNavigate();
+
     const [nameValue, setNameValue] = useState("");
     const [addressValue,setAddressValue] = useState("");
     const [emailValue,setEmailValue] = useState("");
-    const [expenseWithoutTax,setAmountWithoutTax] = useState(0);
-    const [expenseWithTax, setexpenseWithTax] = useState(1)
+    // const [expenseWithoutTax,setAmountWithoutTax] = useState(0);
+    // const [expenseWithTax, setexpenseWithTax] = useState(1)
 
     const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
     const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
 
     const[expense,setExpense] = useState(0);
+    const[tax,setTax] = useState(0);
 
 
     const location = useLocation();
@@ -46,8 +49,13 @@ export const BookingPage = () => {
         const res = await fetchData(url)
         console.log(res)
         //setHotelsData(res)
-        setExpense(res);
+        // setting the expense
+        //setExpense(res);
         //navigate('/');
+        console.log(res["tax"])
+        setTax(res["tax"])
+        setExpense(res["withTax"])
+
     }
 
 
@@ -59,6 +67,10 @@ export const BookingPage = () => {
 
     function printdate(){
         console.log(daysDifference)
+    }
+
+    function backToHome(){
+      navigate("/")
     }
 
 
@@ -79,8 +91,13 @@ export const BookingPage = () => {
         {/* <button onClick={calculateExpense}>view expense</button><br></br> */}
         <button onClick={calculateExpense}>view expense</button><br></br>
 
-        with tax <h3>{expenseWithTax}</h3>        
-        without tax <h3>{expenseWithoutTax}</h3>        
+        expense<h3>{expense}</h3>        
+        {/* without tax <h3>{expenseWithoutTax}</h3>         */}
+
+        tax<h3>{tax}</h3>
+
+        <button onClick={backToHome} >Cancel</button>
+
     </div>
     
   );

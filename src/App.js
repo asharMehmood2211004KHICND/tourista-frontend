@@ -6,6 +6,7 @@ import { Searchbox } from './components/Searchbox';
 import { HotelsList } from './components/HotelsList';
 import { HotelDetail } from './components/HotelDetail';
 import { BookingPage } from './pages/BookingPage';
+import { ConfirmationPage } from './pages/ConfirmationPage';
 
 function App() {
 
@@ -43,6 +44,8 @@ function App() {
           <Route element={<HotelDetail/>} path="/hotel/:id"  />
 
           <Route element={<BookingPage/>} path="/booking"/>
+
+          <Route element={<ConfirmationPage path="/confirmation" ></ConfirmationPage>}  />
 
       </Routes>
 
