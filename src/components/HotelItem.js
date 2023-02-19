@@ -8,15 +8,15 @@ export const HotelItem = ({ name, experience, location,id }) => {
         const navigate = useNavigate();
         
         const handleClick = () => {
-              navigate(`/detail/${id}`)  
+              navigate(`/hotel/${id}`)  
         }
 
     return (
         <div className={styles.hotelItem}>
 
-        <Link to={`/hotel/${id}`}>{name}</Link>
+        {/* <Link to={`/hotel/${id}`}>{name}</Link> */}
 
-            <h2> name : {name}</h2>
+            <h2 onClick={handleClick} > name : {name}</h2>
             <p>experience: {experience}</p>
             <p> location : {location} </p>
 

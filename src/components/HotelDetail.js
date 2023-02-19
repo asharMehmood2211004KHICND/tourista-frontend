@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const HotelDetail = ({}) => {
 
   const [hotel,setHotel] = useState(null);
+  //extracting id from url
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ export const HotelDetail = ({}) => {
   }
   
   
-
+  //get hotel by id 
   useEffect(()=>{
 
     const fetchHotel = async ()=>{
@@ -25,6 +26,7 @@ export const HotelDetail = ({}) => {
       const response = await fetch(`http://localhost:8080/hotel/${id}`);
       const data = await response.json();
       setHotel(data);
+      //hotel = hotel object with all the info.. can be retrived on booking page using location property {} 
 
     };
 

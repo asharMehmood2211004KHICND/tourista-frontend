@@ -45,7 +45,7 @@ function App() {
 
           <Route element={<BookingPage/>} path="/booking"/>
 
-          <Route element={<ConfirmationPage path="/confirmation" ></ConfirmationPage>}  />
+          <Route element={<ConfirmationPage/>} path="/confirmation"  />
 
       </Routes>
 

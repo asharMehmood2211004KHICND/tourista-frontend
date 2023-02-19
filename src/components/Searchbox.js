@@ -30,7 +30,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
         const res = await fetchData(url)
         console.log(res)
         setHotelsData(res)
-        navigate('/');
+        // navigate('/');
     }
 
 
