@@ -69,7 +69,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
         <form className={styles.searchbox} onSubmit={searchResults}>
 
             <div>
-                <label htmlFor="city">City:</label>
+                <label htmlFor="city">City: </label>
                 <select required={true} id="city" value={selectedCity} onChange={handleCity}>
                     <option value='' disabled >Select city</option>
                     <option value="karachi">Karachi</option>
@@ -79,7 +79,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
             </div>
 
             <div>
-                <label htmlFor="experience">Experience:</label>
+                <label htmlFor="experience">Experience: </label>
                 <select required={true} id="experience" value={selectedExperience} onChange={handleExperience}>
                     <option value='' disabled >Select Experience</option>
                     <option value="luxury">Luxury</option>
@@ -91,7 +91,7 @@ export const Searchbox = ({hotelsData,setHotelsData}) => {
 
 
             <div>
-                <label htmlFor="experience">Pool:</label>
+                <label htmlFor="experience">Pool: </label>
                 <select required={true} id="experience" value={selectedPool} onChange={handlePool}>
                     <option value='' disabled >Select Experience</option>
                     <option value="yes">Yes</option>

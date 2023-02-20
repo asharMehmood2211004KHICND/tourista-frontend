@@ -25,33 +25,36 @@ function App() {
     //   <HotelsList hotelsData={hotelsData} />
 
     // </>
-    <>
-    
-    
-      <Router>
-        <Searchbox hotelsData={hotelsData} setHotelsData={setHotelsData} />
-
-        
-      <Routes>
-
-        <Route element={
+    <div  className={styles.appBody}>
           <>
-            
-            <HotelsList hotelsData={hotelsData} />
-          </>} path="/" />
+    
+    
+    <Router>
+      <Searchbox hotelsData={hotelsData} setHotelsData={setHotelsData} />
 
-          {/* <Route element={} path="/detail/:hotelId" /> */}
-          <Route element={<HotelDetail/>} path="/hotel/:id"  />
+      
+    <Routes>
 
-          <Route element={<BookingPage/>} path="/booking"/>
+      <Route element={
+        <>
+          
+          <HotelsList hotelsData={hotelsData} />
+        </>} path="/" />
 
-          <Route element={<ConfirmationPage/>} path="/confirmation"  />
+        {/* <Route element={} path="/detail/:hotelId" /> */}
+        <Route element={<HotelDetail/>} path="/hotel/:id"  />
 
-      </Routes>
+        <Route element={<BookingPage/>} path="/booking"/>
 
-    </Router>
+        <Route element={<ConfirmationPage/>} path="/confirmation"  />
 
-    </>
+    </Routes>
+
+  </Router>
+
+  </>
+  
+    </div>
     
   );
 }

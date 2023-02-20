@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,8 +35,12 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .appBody{
   /* background-color: #282c34; */
+  /* border: 10px solid green; */
+  background-color: aqua;
+  height: 40px;
+  padding: 10px;
 }
